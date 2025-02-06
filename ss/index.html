@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home page</title>
+  <link rel="stylesheet" href="./css/style.css">
+   <link rel="stylesheet" href="./css/owl.carousel.min.css">
+   <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <header>
+  <div class="container">
+    <div class="header_sctn">
+      <div class="logo">
+       <span>South safari</span>
+      </div>
+      <div class="search_bar">
+        <input type="text" id="search-location" placeholder="Search for location..." oninput="filterLocationSuggestions()" autocomplete="off">
+        <div class="srch">
+            <img src="images/search.png" alt="search">
+        </div>
+        <div id="location-suggestions" class="dropdown-menu"></div>
+    </div>
+      <div class="menu">
+        <ul>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Tour</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </header>
+<section class="main">
+  <section class="banner_section">
+    <div class="banner_img">
+      <img src="images/pexels-david-kanigan-239927285-29327697.jpg" alt="">
+    </div>
+    <div class="bnner_content">
+      <h1>Travel beyond the ordinary,
+        where magic meets the horizon</h1>
+    </div>
+    <div class="form_container">
+      <div class="tabs">
+        <div class="tab active-tab" onclick="showTab('cabs')">Cabs</div>
+        <div class="tab" onclick="showTab('trips')">Trips</div>
+        <div class="tab" onclick="showTab('packages')">Packages</div>
+    </div>
+    <div id="cabs" class="tab-content active">
+      <div class="form-container">
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="from-cabs">From</label>
+                  <div class="dropdown">
+                      <input type="text" id="from-cabs" placeholder="Search From" oninput="filterLocations('from-cabs')" onclick="toggleDropdown('from-cabs')" autocomplete="off">
+                      <div class="dropdown-menu" id="from-cabs-menu">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="to-cabs">To</label>
+                  <div class="dropdown">
+                      <input type="text" id="to-cabs" placeholder="Search To" oninput="filterLocations('to-cabs')" onclick="toggleDropdown('to-cabs')" autocomplete="off">
+                      <div class="dropdown-menu" id="to-cabs-menu">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="departure-cabs">Departure</label>
+                  <input type="date" id="departure-cabs">
+              </div>
+              <div class="form-group">
+                  <label for="return-cabs">Return</label>
+                  <input type="date" id="return-cabs">
+              </div>
+          </div>
+          <div class="form-row pass">
+              <div class="form-group">
+                  <label for="travellers-cabs">Travellers</label>
+                  <input type="number" id="travellers-cabs" placeholder="Enter number of travellers" min="1">
+              </div>
+              <div class="form-group dys">
+                  <label for="days-cabs">Days</label>
+                  <input type="number" id="days-cabs" placeholder="Days">
+              </div>
+          </div>
+          <div id="special-fares" class="form-container">
+            <h3>Special Fares</h3>
+            <div class="form-row">
+                <label class="form-group">
+                    <input type="radio" id="students" name="special-fare" value="students" onclick="applyDiscount('students')">
+                    <label for="students">Students</label>
+                </label>
+                <label class="form-group">
+                    <input type="radio" id="family" name="special-fare" value="family" onclick="applyDiscount('family')">
+                    <label for="family">Family</label>
+                </label>
+                <label class="form-group">
+                    <input type="radio" id="elders" name="special-fare" value="elders" onclick="applyDiscount('elders')">
+                    <label for="elders">Elders</label>
+                </label>
+            </div>
+            <div id="discount-message-cabs" class="discount-message">
+              <span>Select a special fare to see the offer</span>
+          </div>
+        </div>
+          <button onclick="search('cabs')">Search</button>
+      </div>
+  </div>
+  <div id="trips" class="tab-content">
+      <div class="form-container">
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="from-trips">t From</label>
+                  <div class="dropdown">
+                      <input type="text" id="from-trips" placeholder="Search From" oninput="filterLocations('from-trips')" onclick="toggleDropdown('from-trips')" autocomplete="off">
+                      <div class="dropdown-menu" id="from-trips-menu">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="to-trips">To</label>
+                  <div class="dropdown">
+                      <input type="text" id="to-trips" placeholder="Search To" oninput="filterLocations('to-trips')" onclick="toggleDropdown('to-trips')" autocomplete="off">
+                      <div class="dropdown-menu" id="to-trips-menu">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="departure-trips">Departure</label>
+                  <input type="date" id="departure-trips">
+              </div>
+              <div class="form-group">
+                  <label for="return-trips">Return</label>
+                  <input type="date" id="return-trips">
+              </div>
+          </div>
+          <div class="form-row pass">
+              <div class="form-group">
+                  <label for="travellers-trips">Travellers</label>
+                  <input type="number" id="travellers-trips" placeholder="Enter number of travellers" min="1">
+              </div>
+              <div class="form-group dys">
+                  <label for="days-trips">Days</label>
+                  <input type="number" id="days-trips" placeholder="Days">
+              </div>
+          </div>
+          <div id="special-fares" class="form-container">
+            <h3>Special Fares</h3>
+            <div class="form-row">
+                <label class="form-group">
+                    <input type="radio" id="students" name="special-fare" value="students" onclick="applyDiscount('students')">
+                    <label for="students">Students</label>
+                </label>
+                <label class="form-group">
+                    <input type="radio" id="family" name="special-fare" value="family" onclick="applyDiscount('family')">
+                    <label for="family">Family</label>
+                </label>
+                <label class="form-group">
+                    <input type="radio" id="elders" name="special-fare" value="elders" onclick="applyDiscount('elders')">
+                    <label for="elders">Elders</label>
+                </label>
+            </div>
+            <div id="discount-message-trips" class="discount-message">
+              <span>Select a special fare to see the offer</span>
+          </div>
+        </div>
+          <button onclick="search('trips')">Search</button>
+      </div>
+  </div>
+  <div id="packages" class="tab-content">
+      <div class="form-container">
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="from-packages">From</label>
+                  <div class="dropdown">
+                      <input type="text" id="from-packages" placeholder="Search From" oninput="filterLocations('from-packages')" onclick="toggleDropdown('from-packages')" autocomplete="off">
+                      <div class="dropdown-menu" id="from-packages-menu">
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="to-packages">To</label>
+                  <div class="dropdown">
+                      <input type="text" id="to-packages" placeholder="Search To" oninput="filterLocations('to-packages')" onclick="toggleDropdown('to-packages')" autocomplete="off">
+                      <div class="dropdown-menu" id="to-packages-menu">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="departure-packages">Departure</label>
+                  <input type="date" id="departure-packages">
+              </div>
+              <div class="form-group">
+                  <label for="return-packages">Return</label>
+                  <input type="date" id="return-packages">
+              </div>
+          </div>
+          <div class="form-row pass">
+              <div class="form-group">
+                  <label for="travellers-packages">Travellers</label>
+                  <input type="number" id="travellers-packages" placeholder="Enter number of travellers" min="1">
+              </div>
+              <div class="form-group dys">
+                  <label for="days-packages">Days</label>
+                  <input type="number" id="days-packages" placeholder="Days">
+              </div>
+          </div>
+          <div id="special-fares" class="form-container">
+            <h3>Special Fares</h3>
+            <div class="form-row">
+                <label class="form-group">
+                    <input type="radio" id="students" name="special-fare" value="students" onclick="applyDiscount('students')">
+                    <label for="students">Students</label>
+                </label>
+                <label class="form-group">
+                    <input type="radio" id="family" name="special-fare" value="family" onclick="applyDiscount('family')">
+                    <label for="family">Family</label>
+                </label>
+                <label class="form-group">
+                    <input type="radio" id="elders" name="special-fare" value="elders" onclick="applyDiscount('elders')">
+                    <label for="elders">Elders</label>
+                </label>
+            </div>
+            <div id="discount-message-packages" class="discount-message">
+              <span>Select a special fare to see the offer</span>
+          </div>
+        </div>
+          <button onclick="search('packages')">Search</button>
+      </div>
+  </div>
+    </div>
+  </section>
+  <section class="category">
+    <div class="container">
+      <div class="cta_top">
+        <h3>Select a category</h3>
+        <p>Choose your preferred category and start your next adventure! </p>
+      </div>
+      <div class="cta_contain">
+       <div class="itm">
+        <a href="#">
+          <img src="images/pexels-vidalbalielojrfotografia-1682497.jpg">
+        </a>
+        <a href="#" class="hvr_cnt">
+          <span>Family</span>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint. Omnis vitae incidunt non mollitia velit accusamus.</p>
+        </a>
+       </div>
+       <div class="itm">
+        <a href="#">
+          <img src="images/pexels-wildlittlethingsphoto-745045.jpg">
+        </a>
+        <a href="#" class="hvr_cnt">
+          <span>Friends</span>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint. Omnis vitae incidunt non mollitia velit accusamus.</p>
+        </a>
+       </div>
+       <div class="itm">
+        <a href="#">
+          <img src="images/pexels-sanmane-1365425.jpg">
+        </a>
+        <a href="#" class="hvr_cnt">
+          <span>Adventure</span>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint. Omnis vitae incidunt non mollitia velit accusamus.</p>
+        </a>
+       </div>
+       <div class="itm">
+        <a href="#">
+          <img src="images/pexels-asadphoto-1024960.jpg">
+        </a>
+        <a href="#" class="hvr_cnt">
+          <span>Honeymoon</span>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint. Omnis vitae incidunt non mollitia velit accusamus.</p>
+        </a>
+       </div>
+       <div class="itm">
+        <a href="#">
+          <img src="images/pexels-manish-dhodi-1475001-13652024.jpg">
+        </a>
+        <a href="#" class="hvr_cnt">
+          <span>Religious</span>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint. Omnis vitae incidunt non mollitia velit accusamus.</p>
+        </a>
+       </div>
+       <div class="itm">
+        <a href="#">
+          <img src="images/pexels-umarandrabi-20433079.jpg">
+        </a>
+        <a href="#" class="hvr_cnt">
+          <span>Cultural</span>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, sint. Omnis vitae incidunt non mollitia velit accusamus.</p>
+        </a>
+       </div>
+      </div>
+    </div>
+  </section>
+  <section class="offers">
+   <div class="container">
+    <div class="offers_hd">
+        <h4>Best Offers for you</h4>
+        <p> Explore our exclusive offers and save big!</p>
+    </div>
+    <div class="owl-carousel owl-theme">
+      <div class="item">
+        <img src="images/cbeccbfabf40dc091da2f64101650388-kjvwe.png">
+      </div>
+      <div class="item">
+        <img src="images/icici.png">
+      </div>
+      <div class="item">
+        <img src="images/flight.png">
+      </div>
+      <div class="item">
+        <img src="images/cbeccbfabf40dc091da2f64101650388-kjvwe.png">
+      </div>
+  </div>
+   </div>
+  </section>
+  <section class="destination">
+   <div class="container">
+    <div class="dest_cont">
+      <div class="dest_hd">
+        <h5>
+          Find your best destination
+        </h5>
+        <p>Discover amazing places tailored for you!</p>
+      </div>
+      <div class="dest_mn">
+        <div class="img-blk on">
+          <img src="images/kanyakumari">
+          <div class="ovrly">
+             <span>Statues</span>
+             <img src="images/location (1).png">
+             <b>kanyakumari</b>
+          </div>
+        </div>
+        <div class="img-blk tw">
+          <img src="images/rameshh">
+          <div class="ovrly">
+            <span>Paamban</span>
+            <img src="images/location (1).png">
+            <b>Rameshwaram</b>
+         </div>
+        </div>
+        <div class="img-blk th">
+          <img src="images/kodai.jpg">
+          <div class="ovrly">
+            <span>Hills</span>
+            <img src="images/location (1).png">
+            <b>kodaikanal</b>
+         </div>
+        </div>
+        <div class="img-blk fr">
+          <img src="images/ooty">
+          <div class="ovrly">
+            <span>Mountain train</span>
+            <img src="images/location (1).png">
+            <b>ooty</b>
+         </div>
+        </div>
+        <div class="img-blk fv">
+          <img src="images/kerala">
+          <div class="ovrly">
+            <span>Forests</span>
+            <img src="images/location (1).png">
+            <b>kerala</b>
+         </div>
+        </div>
+        <div class="img-blk sx">
+          <img src="images/kanyakumari">
+          <div class="ovrly">
+            <span>Statues</span>
+            <img src="images/location (1).png">
+            <b>kanyakumari</b>
+         </div>
+        </div>
+        <div class="img-blk svn">
+          <img src="images/ooty">
+          <div class="ovrly">
+            <span>Views</span>
+            <img src="images/location (1).png">
+            <b>Ooty</b>
+         </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </section>
+  <section class="news_letter">
+   <div class="container">
+    <div class="nws">
+     <h5>Subscribe for regular news</h5>
+     <button>Subscribe</button>
+    </div>
+   </div>
+  </section>
+</section>
+<script src="js/jquery-3.7.1.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script>
+<script>
+ const cities = [
+  "New York", "Los Angeles", "Chicago", "Houston", "Phoenix", 
+  "Philadelphia", "San Antonio", "San Diego", "Dallas", "San Jose"
+];
+
+function filterCities() {
+  const searchInput = document.getElementById("city-search");
+  const dropdown = document.getElementById("city-dropdown");
+  const filter = searchInput.value.toLowerCase();
+
+  // Clear previous dropdown list
+  dropdown.innerHTML = "";
+  if (filter) {
+      // Filter city names
+      const filteredCities = cities.filter(city => city.toLowerCase().includes(filter));
+      // Populate dropdown
+      filteredCities.forEach(city => {
+          const li = document.createElement("li");
+          li.textContent = city;
+          li.onclick = () => selectCity(city);
+          dropdown.appendChild(li);
+      });
+
+      // Show dropdown if matches found
+      dropdown.classList.toggle("hidden", filteredCities.length === 0);
+  } else {
+      // Hide dropdown if input is empty
+      dropdown.classList.add("hidden");
+  }
+}
+function selectCity(city) {
+  document.getElementById("city-search").value = city;
+  document.getElementById("city-dropdown").classList.add("hidden");
+}
+</script>
+<script>
+  function toggleDropdown(id) {
+     const menu = document.getElementById(id + '-menu');
+     menu.classList.toggle('active');
+ }
+ 
+ function filterLocations(id) {
+     const input = document.getElementById(id);
+     const filter = input.value.toUpperCase();
+     const menu = document.getElementById(id + '-menu');
+     const items = menu.getElementsByClassName('dropdown-item');
+ 
+     for (let i = 0; i < items.length; i++) {
+         const txtValue = items[i].textContent || items[i].innerText;
+         items[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? '' : 'none';
+     }
+ }
+ 
+ function selectLocation(id, location) {
+     const input = document.getElementById(id);
+     input.value = location;
+     toggleDropdown(id);
+ }
+ 
+ function showTab(tab) {
+     const tabs = document.querySelectorAll('.tab');
+     const tabContents = document.querySelectorAll('.tab-content');
+ 
+     // Remove active class from all tabs and tab contents
+     tabs.forEach(t => t.classList.remove('active-tab'));
+     tabContents.forEach(content => content.classList.remove('active'));
+ 
+     // Find the clicked tab and add the active class
+     tabs.forEach(t => {
+         if (t.textContent.trim().toLowerCase() === tab) {
+             t.classList.add('active-tab');
+         }
+     });
+ 
+     // Show the corresponding tab content
+     document.getElementById(tab).classList.add('active');
+ }
+ 
+ function search(tab) {
+     alert('Searching for ' + tab);
+ }
+ 
+ function setMinDate() {
+     const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+     document.querySelectorAll("input[type='date']").forEach(input => {
+         input.setAttribute("min", today);
+     });
+ }
+ 
+ // Call the function when the page loads
+ window.onload = setMinDate;
+ </script>
+ <script>
+   const locations = ["New York", "Los Angeles", "Chicago", "San Francisco", "Miami", "kanyakumari", "madurai"]; // Add more locations
+   
+   function populateDropdown(menuId, locations) {
+       const menu = document.getElementById(menuId);
+       menu.innerHTML = ""; // Clear previous entries
+   
+       locations.forEach(location => {
+           const item = document.createElement("div");
+           item.classList.add("dropdown-item");
+           item.textContent = location;
+           item.onclick = function() {
+               selectLocation(menuId.replace("-menu", ""), location);
+           };
+           menu.appendChild(item);
+       });
+   }
+   
+   // Populate all dropdowns dynamically
+   populateDropdown("from-cabs-menu", locations);
+   populateDropdown("to-cabs-menu", locations);
+   populateDropdown("from-trips-menu", locations);
+   populateDropdown("to-trips-menu", locations);
+   populateDropdown("from-packages-menu", locations);
+   populateDropdown("to-packages-menu", locations);
+   </script>
+<script>
+  function applyDiscount(fareType) {
+    let activeTab = document.querySelector('.tab-content.active'); // Get the active tab
+    let discountMessage;
+
+    if (activeTab.id === 'cabs') {
+        discountMessage = document.getElementById('discount-message-cabs');
+    } else if (activeTab.id === 'trips') {
+        discountMessage = document.getElementById('discount-message-trips');
+    } else if (activeTab.id === 'packages') {
+        discountMessage = document.getElementById('discount-message-packages');
+    }
+
+    switch(fareType) {
+        case 'students':
+            discountMessage.innerHTML = '<span>Students enjoy a 15% discount!</span>';
+            // Apply 15% discount logic
+            break;
+        case 'family':
+            discountMessage.innerHTML = '<span>Family offers a 10% discount!</span>';
+            // Apply 10% discount logic
+            break;
+        case 'elders':
+            discountMessage.innerHTML = '<span>Elders get a 12% discount!</span>';
+            // Apply 12% discount logic
+            break;
+        default:
+            discountMessage.innerHTML = '<span>Select a special fare to see the offer</span>';
+    }
+}
+
+</script>
+<script>
+const availableLocations = [
+    { name: "New York", url: "https://yourwebsite.com/destination/new-york" },
+    { name: "Los Angeles", url: "https://yourwebsite.com/destination/los-angeles" },
+    { name: "Chicago", url: "https://yourwebsite.com/destination/chicago" },
+    { name: "San Francisco", url: "https://yourwebsite.com/destination/san-francisco" },
+    { name: "Miami", url: "https://yourwebsite.com/destination/miami" },
+    { name: "Boston", url: "https://yourwebsite.com/destination/boston" },
+    { name: "Dallas", url: "https://yourwebsite.com/destination/dallas" },
+    { name: "Washington", url: "https://yourwebsite.com/destination/washington" },
+    { name: "Seattle", url: "https://yourwebsite.com/destination/seattle" },
+    { name: "Denver", url: "https://yourwebsite.com/destination/denver" }
+    // Add more locations with URLs here
+];
+
+function filterLocationSuggestions() {
+    let searchQuery = document.getElementById("search-location").value.toLowerCase();
+    let suggestionDropdown = document.getElementById("location-suggestions");
+
+    // Clear previous suggestions
+    suggestionDropdown.innerHTML = "";
+
+    if (searchQuery.length === 0) {
+        suggestionDropdown.style.display = "none";
+        return;
+    }
+
+    let filteredSuggestions = availableLocations.filter(location => location.name.toLowerCase().includes(searchQuery));
+    
+    if (filteredSuggestions.length > 0) {
+        suggestionDropdown.style.display = "block";
+    } else {
+        suggestionDropdown.style.display = "none";
+    }
+
+    // Display filtered suggestions as links
+    filteredSuggestions.forEach(location => {
+        let suggestion = document.createElement("div");
+        
+        // Create a link element
+        let link = document.createElement("a");
+        link.href = location.url;
+        link.textContent = location.name;
+        link.target = "_blank"; // Open the link in a new tab
+        
+        // Append the link to the suggestion div
+        suggestion.appendChild(link);
+        suggestionDropdown.appendChild(suggestion);
+    });
+}
+
+document.getElementById("search-location").addEventListener("focus", () => {
+    if (document.getElementById("search-location").value.length > 0) {
+        document.getElementById("location-suggestions").style.display = "block";
+    }
+});
+
+document.getElementById("search-location").addEventListener("blur", () => {
+    setTimeout(() => { document.getElementById("location-suggestions").style.display = "none"; }, 200);
+});
+
+</script>
+</body>
+</html>
